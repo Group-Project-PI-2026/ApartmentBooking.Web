@@ -34,26 +34,26 @@ export const propertyPublicRoutes: RouteObject[] = [
 export const propertyCabinetRoutes: RouteObject[] = [
   {
     path: p.ownerObjects,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Мої об’єкти" screen="17, 17B" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerObjectsPage/OwnerObjectsPage').then((m) => m.OwnerObjectsPage),
+      { roles: [Role.Owner] },
     ),
   },
   {
     path: p.ownerObjectDetails,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Інформація про об’єкт" screen="17A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerObjectPage/OwnerObjectPage').then((m) => m.OwnerObjectPage),
+      { roles: [Role.Owner] },
     ),
   },
   {
     path: p.ownerStatistics,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Статистика" screen="18, 18A" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/OwnerStatisticsPage/OwnerStatisticsPage').then(
+          (m) => m.OwnerStatisticsPage,
+        ),
+      { roles: [Role.Owner] },
     ),
   },
   {
