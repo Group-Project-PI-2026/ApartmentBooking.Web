@@ -9,3 +9,11 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+interface Window {
+  __APP_CONFIG__?: {
+    apiBaseUrl?: string
+    oidcAuthority?: string
+    oidcClientId?: string
+  }
+}

@@ -40,12 +40,32 @@ Stripe and SMTP keys go to `dev/backend.env` (see `dev/backend.env.example`).
 
 ## Scripts
 
-| Command               | Description                                    |
-| --------------------- | ---------------------------------------------- |
-| `npm run dev`         | Start dev server                               |
-| `npm run backend`     | Start backend with local dev settings          |
-| `npm run backend:mac` | Same on macOS / Linux                          |
-| `npm run build`       | Type check and production build                |
-| `npm run lint`        | Lint                                           |
-| `npm run format`      | Format code                                    |
-| `npm run api:types`   | Regenerate API types (backend must be running) |
+| Command             | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| `npm run dev`       | Start dev server                               |
+| `npm run backend`   | Start backend with local dev settings          |
+| `npm run build`     | Type check and production build                |
+| `npm run lint`      | Lint                                           |
+| `npm run format`    | Format code                                    |
+| `npm run api:types` | Regenerate API types (backend must be running) |
+
+## Docker
+
+The image builds the app and serves it with Nginx. It proxies `/api/` to the backend and handles SPA routes. Runtime settings come from environment variables, so one image works on any server.
+
+```bash
+docker build -t myrent-web .
+docker run -p 80:80 \
+  -e API_UPSTREAM=http://backend:8080 \
+  -e OIDC_AUTHORITY=https://auth.example.com/realms/apartment-booking \
+  myrent-web
+```
+
+| Variable         | Default                 | Description                                      |
+| ---------------- | ----------------------- | ------------------------------------------------ |
+| `API_UPSTREAM`   | `http://backend:8080`   | Backend address for the `/api/` proxy            |
+| `OIDC_AUTHORITY` | —                       | Keycloak realm URL                               |
+| `OIDC_CLIENT_ID` | `apartment-booking-spa` | Keycloak client                                  |
+| `API_BASE_URL`   | empty                   | API URL if it is not served from the same origin |
+
+Health check: `GET /healthz`. The Keycloak client must allow the site URL in Valid redirect URIs and Web origins.

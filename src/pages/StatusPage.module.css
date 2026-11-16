@@ -27,3 +27,8 @@
   align-self: flex-start;
   min-width: 280px;
 }
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+}
