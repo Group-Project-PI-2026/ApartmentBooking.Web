@@ -25,7 +25,7 @@ npm run backend
 npm run dev
 ```
 
-Run `npm run backend` and `npm run dev` in separate terminals.
+Run `npm run backend` and `npm run dev` in separate terminals. On macOS / Linux use `npm run backend:mac` instead of `npm run backend`.
 
 | Service  | URL                   |
 | -------- | --------------------- |
@@ -40,11 +40,12 @@ Stripe and SMTP keys go to `dev/backend.env` (see `dev/backend.env.example`).
 
 ## Scripts
 
-| Command             | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| `npm run dev`       | Start dev server                               |
-| `npm run backend`   | Start backend with local dev settings          |
-| `npm run build`     | Type check and production build                |
-| `npm run lint`      | Lint                                           |
-| `npm run format`    | Format code                                    |
-| `npm run api:types` | Regenerate API types (backend must be running) |
+| Command               | Description                                    |
+| --------------------- | ---------------------------------------------- |
+| `npm run dev`         | Start dev server                               |
+| `npm run backend`     | Start backend with local dev settings          |
+| `npm run backend:mac` | Same on macOS / Linux                          |
+| `npm run build`       | Type check and production build                |
+| `npm run lint`        | Lint                                           |
+| `npm run format`      | Format code                                    |
+| `npm run api:types`   | Regenerate API types (backend must be running) |
