@@ -68,18 +68,15 @@ export const bookingPublicRoutes: RouteObject[] = [
 export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.profile,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Профіль" screen="13, 13A, 13C, 13D" />
-      </RequireAuth>
-    ),
+    ...lazyPage(() => import('./pages/ProfilePage/ProfilePage').then((m) => m.ProfilePage), {
+      auth: true,
+    }),
   },
   {
     path: p.profileNotifications,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Сповіщення" screen="13B" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ProfilePage/NotificationsPage').then((m) => m.NotificationsPage),
+      { auth: true },
     ),
   },
   {
