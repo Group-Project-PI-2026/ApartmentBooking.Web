@@ -2,8 +2,10 @@ import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
 import { PagePlaceholder } from '@/shared/ui'
 import { ApartmentPage } from './pages/ApartmentPage/ApartmentPage'
+import { BookingDetailsPage } from './pages/BookingDetailsPage/BookingDetailsPage'
 import { CheckoutPage } from './pages/CheckoutPage/CheckoutPage'
 import { HomePage } from './pages/HomePage/HomePage'
+import { PaymentStatusPage } from './pages/PaymentStatusPage/PaymentStatusPage'
 import { SearchPage } from './pages/SearchPage/SearchPage'
 import { bookingPaths as p } from './paths'
 
@@ -27,7 +29,23 @@ export const bookingPublicRoutes: RouteObject[] = [
     path: p.paymentSuccess,
     element: (
       <RequireAuth roles={[Role.Tenant]}>
-        <PagePlaceholder title="Статус платежу" screen="08, 09" />
+        <PaymentStatusPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: p.bookingDetails,
+    element: (
+      <RequireAuth roles={[Role.Tenant]}>
+        <BookingDetailsPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: p.cancelBooking,
+    element: (
+      <RequireAuth roles={[Role.Tenant]}>
+        <PagePlaceholder title="Скасування бронювання" screen="11, 11A" />
       </RequireAuth>
     ),
   },
@@ -45,14 +63,6 @@ export const bookingCabinetRoutes: RouteObject[] = [
     element: (
       <RequireAuth roles={[Role.Tenant]}>
         <PagePlaceholder title="Мої бронювання" screen="10, 10A" />
-      </RequireAuth>
-    ),
-  },
-  {
-    path: p.bookingDetails,
-    element: (
-      <RequireAuth roles={[Role.Tenant]}>
-        <PagePlaceholder title="Деталі бронювання" screen="09, 11, 11A" />
       </RequireAuth>
     ),
   },

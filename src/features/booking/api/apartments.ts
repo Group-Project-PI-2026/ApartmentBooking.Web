@@ -39,5 +39,6 @@ export function useApartment(id: string) {
   return useQuery({
     queryKey: ['apartment', id],
     queryFn: () => unwrap(api.GET('/api/apartments/{id}', { params: { path: { id } } })),
+    enabled: Boolean(id),
   })
 }

@@ -5,6 +5,7 @@ export const bookingPaths = {
   paymentSuccess: '/bookings/payment-success',
   myBookings: '/bookings',
   bookingDetails: '/bookings/:id',
+  cancelBooking: '/bookings/:id/cancel',
   profile: '/profile',
   profileNotifications: '/profile/notifications',
   help: '/help',

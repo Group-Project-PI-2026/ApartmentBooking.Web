@@ -75,6 +75,8 @@ export function CheckoutPage() {
           ) : (
             <DetailsStep
               apartmentId={id}
+              apartmentTitle={apartment.data.title}
+              districtName={apartment.data.districtName}
               checkIn={checkIn}
               checkOut={checkOut}
               maxGuests={maxGuests}

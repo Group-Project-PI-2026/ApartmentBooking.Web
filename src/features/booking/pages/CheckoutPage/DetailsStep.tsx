@@ -4,11 +4,14 @@ import { useCurrentUser } from '@/shared/auth'
 import { formatGuests, formatPrice } from '@/shared/lib/format'
 import { Button, Checkbox, InfoMessage, Input, RadioCard, Select, Status } from '@/shared/ui'
 import { useReserveBooking } from '../../api/bookings'
+import { savePendingPayment } from '../../pendingPayment'
 import { DEPOSIT_PERCENT, paymentSplit } from '../../pricing'
 import styles from './CheckoutPage.module.css'
 
 interface Props {
   apartmentId: string
+  apartmentTitle: string
+  districtName: string
   checkIn: string
   checkOut: string
   maxGuests: number
@@ -49,6 +52,8 @@ function validate(form: GuestForm) {
 
 export function DetailsStep({
   apartmentId,
+  apartmentTitle,
+  districtName,
   checkIn,
   checkOut,
   maxGuests,
@@ -92,7 +97,21 @@ export function DetailsStep({
 
     reserve.mutate(
       { apartmentId, checkIn, checkOut, guestsCount: guests, payInFull },
-      { onSuccess: (data) => window.location.assign(data.checkoutUrl) },
+      {
+        onSuccess: (data) => {
+          savePendingPayment({
+            apartmentId,
+            title: apartmentTitle,
+            districtName,
+            checkIn,
+            checkOut,
+            guests,
+            amount: Number(data.amountToPay),
+            expiresAt: data.expiresAt,
+          })
+          window.location.assign(data.checkoutUrl)
+        },
+      },
     )
   }
 
