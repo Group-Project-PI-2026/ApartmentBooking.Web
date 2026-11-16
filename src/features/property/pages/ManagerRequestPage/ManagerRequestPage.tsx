@@ -5,6 +5,7 @@ import { formatGuests } from '@/shared/lib/format'
 import { Button, InfoMessage, Loader, Status, Textarea } from '@/shared/ui'
 import { useDecideRequest, useManagerRequest } from '../../api/managerRequests'
 import { requestNumber, requestStatus } from '../../api/ownerRequests'
+import { DetailRows as Rows } from '../../components/DetailRows/DetailRows'
 import { Notice } from '../../components/Notice/Notice'
 import { formatSubmitted } from '../../format'
 import { propertyPaths } from '../../paths'
@@ -22,19 +23,6 @@ function Card({ title, children }: { title: string; children: ReactNode }) {
       <h2>{title}</h2>
       {children}
     </section>
-  )
-}
-
-function Rows({ rows }: { rows: [string, ReactNode][] }) {
-  return (
-    <dl className={styles.rows}>
-      {rows.map(([label, value]) => (
-        <div key={label} className={styles.row}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
-        </div>
-      ))}
-    </dl>
   )
 }
 
