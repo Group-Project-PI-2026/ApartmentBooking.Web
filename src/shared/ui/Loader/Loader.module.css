@@ -1,0 +1,21 @@
+.loader {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}

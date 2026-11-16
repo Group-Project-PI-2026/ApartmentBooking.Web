@@ -16,3 +16,7 @@ export function formatGuests(count: number | string): string {
   const n = Number(count)
   return `${n} ${plural(n, 'гість', 'гості', 'гостей')}`
 }
+
+export function formatNights(count: number): string {
+  return `${count} ${plural(count, 'ніч', 'ночі', 'ночей')}`
+}

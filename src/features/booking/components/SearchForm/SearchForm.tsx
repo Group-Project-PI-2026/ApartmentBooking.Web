@@ -10,9 +10,15 @@ const MAX_GUESTS = 50
 
 interface Props {
   initial?: SearchQuery
+  submitLabel?: string
+  allDistrictsLabel?: string
 }
 
-export function SearchForm({ initial = emptySearch }: Props) {
+export function SearchForm({
+  initial = emptySearch,
+  submitLabel = 'Знайти апартаменти',
+  allDistrictsLabel,
+}: Props) {
   const navigate = useNavigate()
   const { data: districts = [] } = useDistricts()
   const [query, setQuery] = useState(initial)
@@ -20,6 +26,11 @@ export function SearchForm({ initial = emptySearch }: Props) {
 
   const today = todayIso()
   const set = (patch: Partial<SearchQuery>) => setQuery((q) => ({ ...q, ...patch }))
+
+  const districtOptions = districts.map((d) => ({ value: String(d.id), label: d.name }))
+  const options = allDistrictsLabel
+    ? [{ value: '', label: allDistrictsLabel }, ...districtOptions]
+    : districtOptions
 
   const changeCheckIn = (checkIn: string) => {
     set({ checkIn, checkOut: query.checkOut && query.checkOut <= checkIn ? '' : query.checkOut })
@@ -45,9 +56,9 @@ export function SearchForm({ initial = emptySearch }: Props) {
     <form className={styles.form} onSubmit={submit}>
       <Select
         label="Район Києва"
-        placeholder="Оберіть район"
+        placeholder={allDistrictsLabel ? undefined : 'Оберіть район'}
         helper="Лише Київ"
-        options={districts.map((d) => ({ value: String(d.id), label: d.name }))}
+        options={options}
         value={query.districtId}
         onChange={(e) => set({ districtId: e.target.value })}
       />
@@ -79,7 +90,7 @@ export function SearchForm({ initial = emptySearch }: Props) {
         onChange={(e) => changeGuests(e.target.value)}
       />
       <Button type="submit" className={styles.submit}>
-        Знайти апартаменти
+        {submitLabel}
       </Button>
     </form>
   )

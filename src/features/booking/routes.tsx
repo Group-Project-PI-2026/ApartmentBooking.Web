@@ -2,6 +2,7 @@ import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
 import { PagePlaceholder } from '@/shared/ui'
 import { HomePage } from './pages/HomePage/HomePage'
+import { SearchPage } from './pages/SearchPage/SearchPage'
 import { bookingPaths as p } from './paths'
 
 export const bookingHomeRoute: RouteObject = {
@@ -10,7 +11,7 @@ export const bookingHomeRoute: RouteObject = {
 }
 
 export const bookingPublicRoutes: RouteObject[] = [
-  { path: p.search, element: <PagePlaceholder title="Результати пошуку" screen="02" /> },
+  { path: p.search, element: <SearchPage /> },
   { path: p.apartment, element: <PagePlaceholder title="Апартаменти" screen="03" /> },
   {
     path: p.checkout,

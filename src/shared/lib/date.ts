@@ -57,3 +57,7 @@ export function monthGrid(month: Date): Array<IsoDate | null> {
   }
   return cells
 }
+
+export function nightsBetween(checkIn: IsoDate, checkOut: IsoDate): number {
+  return Math.round((fromIso(checkOut).getTime() - fromIso(checkIn).getTime()) / 86_400_000)
+}

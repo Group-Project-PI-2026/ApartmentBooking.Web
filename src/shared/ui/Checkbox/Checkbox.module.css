@@ -1,0 +1,78 @@
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.box {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: 6px;
+}
+
+.box::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 4px;
+  background: var(--color-surface);
+  border-radius: 1px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.label {
+  font: var(--font-body);
+  color: var(--color-text);
+}
+
+.input:checked + .box {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.input:checked + .box::after {
+  opacity: 1;
+}
+
+.input:focus-visible + .box {
+  border: var(--focus-width) solid var(--color-focus);
+}
+
+.input[aria-invalid='true'] + .box {
+  border-color: var(--color-error);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.input:disabled + .box {
+  background: var(--color-disabled);
+  border-color: var(--color-text);
+}
+
+.input:disabled:checked + .box {
+  border-color: var(--color-disabled);
+}
+
+.disabled .label {
+  color: var(--color-disabled-text);
+}

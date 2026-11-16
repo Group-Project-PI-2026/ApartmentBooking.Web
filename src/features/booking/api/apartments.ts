@@ -12,6 +12,12 @@ export interface ApartmentSearch {
   guestsCount?: string
 }
 
+function compact<T extends object>(value: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(value).filter(([, v]) => v !== '' && v != null),
+  ) as Partial<T>
+}
+
 export function useDistricts() {
   return useQuery({
     queryKey: ['districts'],
@@ -21,8 +27,9 @@ export function useDistricts() {
 }
 
 export function useApartments(search: ApartmentSearch = {}) {
+  const query = compact(search)
   return useQuery({
-    queryKey: ['apartments', search],
-    queryFn: () => unwrap(api.GET('/api/apartments', { params: { query: search } })),
+    queryKey: ['apartments', query],
+    queryFn: () => unwrap(api.GET('/api/apartments', { params: { query } })),
   })
 }
