@@ -26,3 +26,7 @@ export function formatFileSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${decimal.format(bytes / 1024)} КБ`
   return `${decimal.format(bytes / 1024 / 1024)} МБ`
 }
+
+export function formatDays(count: number): string {
+  return `${count} ${plural(count, 'доба', 'доби', 'діб')}`
+}

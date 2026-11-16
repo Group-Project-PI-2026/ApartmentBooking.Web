@@ -45,10 +45,16 @@ export const bookingPublicRoutes: RouteObject[] = [
   },
   {
     path: p.cancelBooking,
-    element: (
-      <RequireAuth {...tenant}>
-        <PagePlaceholder title="Скасування бронювання" screen="11, 11A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/CancelBookingPage/CancelBookingPage').then((m) => m.CancelBookingPage),
+      tenant,
+    ),
+  },
+  {
+    path: p.myBookings,
+    ...lazyPage(
+      () => import('./pages/MyBookingsPage/MyBookingsPage').then((m) => m.MyBookingsPage),
+      tenant,
     ),
   },
   { path: p.help, element: <PagePlaceholder title="Контакти та допомога" screen="28" /> },
@@ -60,14 +66,6 @@ export const bookingPublicRoutes: RouteObject[] = [
 ]
 
 export const bookingCabinetRoutes: RouteObject[] = [
-  {
-    path: p.myBookings,
-    element: (
-      <RequireAuth {...tenant}>
-        <PagePlaceholder title="Мої бронювання" screen="10, 10A" />
-      </RequireAuth>
-    ),
-  },
   {
     path: p.profile,
     element: (
