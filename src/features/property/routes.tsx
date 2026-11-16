@@ -18,19 +18,16 @@ export const propertyPublicRoutes: RouteObject[] = [
   },
   {
     path: p.myRequests,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Мої заявки" screen="16" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/MyRequestsPage/MyRequestsPage').then((m) => m.MyRequestsPage),
+      { auth: true },
     ),
   },
   {
     path: p.myRequestDetails,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Моя заявка" screen="16, 16A-16C" />
-      </RequireAuth>
-    ),
+    ...lazyPage(() => import('./pages/MyRequestPage/MyRequestPage').then((m) => m.MyRequestPage), {
+      auth: true,
+    }),
   },
 ]
 
