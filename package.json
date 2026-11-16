@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "backend": "powershell -NoProfile -ExecutionPolicy Bypass -File dev/run-backend.ps1",
+    "backend:mac": "bash dev/run-backend.sh",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "format": "prettier --write .",
