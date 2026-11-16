@@ -26,7 +26,7 @@
 }
 
 .emptyAction {
-  min-width: 320px;
+  min-width: min(320px, 100%);
 }
 
 .card {
@@ -111,6 +111,51 @@
 }
 
 .detailsButton {
-  min-width: 350px;
+  min-width: min(350px, 100%);
   margin-right: 76px;
+}
+
+@media (max-width: 1280px) {
+  .photo {
+    width: 260px;
+    height: 200px;
+  }
+
+  .cardFooter {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .detailsButton {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-2);
+  }
+
+  .cardBody {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .photo {
+    width: 100%;
+  }
+
+  .titleRow {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .cardFooter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detailsButton {
+    width: 100%;
+  }
 }

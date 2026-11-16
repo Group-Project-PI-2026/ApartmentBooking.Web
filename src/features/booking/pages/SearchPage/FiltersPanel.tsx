@@ -1,6 +1,8 @@
+import { useState } from 'react'
+import { cn } from '@/shared/lib/cn'
 import { Button, Checkbox, Input } from '@/shared/ui'
 import type { DistrictDto } from '../../api/apartments'
-import type { Filters } from './filters'
+import { hasFilters, type Filters } from './filters'
 import styles from './SearchPage.module.css'
 
 interface Props {
@@ -18,10 +20,20 @@ const digits = (raw: string) => raw.replace(/\D/g, '')
 
 export function FiltersPanel({ value, onChange, onReset, districts, amenities }: Props) {
   const set = (patch: Partial<Filters>) => onChange({ ...value, ...patch })
+  const [open, setOpen] = useState(false)
+  const active = hasFilters(value)
 
   return (
-    <aside className={styles.filters}>
-      <h2>Фільтри</h2>
+    <aside className={cn(styles.filters, open && styles.filtersOpen)}>
+      <h2 className={styles.filtersTitle}>Фільтри</h2>
+      <Button
+        variant="secondary"
+        className={styles.filtersToggle}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        {open ? 'Сховати фільтри' : active ? 'Фільтри (обрано)' : 'Фільтри'}
+      </Button>
 
       <fieldset className={styles.group}>
         <legend className={styles.groupTitle}>Ціна за ніч, ₴</legend>

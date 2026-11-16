@@ -20,3 +20,18 @@
   flex: 1;
   min-width: 0;
 }
+
+@media (max-width: 1280px) {
+  .cabinet {
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 1024px) {
+  .cabinet {
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-8);
+  }
+}

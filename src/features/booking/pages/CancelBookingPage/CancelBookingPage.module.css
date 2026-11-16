@@ -90,11 +90,11 @@
 }
 
 .confirm {
-  min-width: 410px;
+  min-width: min(410px, 100%);
 }
 
 .keep {
-  min-width: 350px;
+  min-width: min(350px, 100%);
 }
 
 .done {
@@ -123,5 +123,47 @@
 }
 
 .doneAction {
-  min-width: 320px;
+  min-width: min(320px, 100%);
+}
+
+@media (max-width: 1280px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding-top: var(--space-4);
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .card,
+  .summary {
+    padding: var(--space-2);
+  }
+
+  .photo {
+    height: 200px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .confirm,
+  .keep,
+  .doneAction {
+    width: 100%;
+  }
 }

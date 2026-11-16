@@ -41,3 +41,20 @@
   background: var(--color-surface-subtle);
   color: var(--color-accent);
 }
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .item {
+    flex-shrink: 0;
+  }
+}

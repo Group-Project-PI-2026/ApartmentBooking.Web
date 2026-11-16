@@ -50,3 +50,20 @@
   border: none;
   border-top: var(--border-width) solid var(--color-border);
 }
+
+@media (max-width: 1024px) {
+  .panel {
+    width: 100%;
+  }
+
+  .card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel,
+  .card {
+    padding: var(--space-2);
+  }
+}

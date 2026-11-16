@@ -182,7 +182,7 @@ export function ManagerBookingsPage() {
         {bookings.isLoading ? (
           <Loader />
         ) : (
-          <Table>
+          <Table className={styles.wideTable}>
             <TableHeader columns={columns} />
             <TableBody>
               {items.length === 0 ? (

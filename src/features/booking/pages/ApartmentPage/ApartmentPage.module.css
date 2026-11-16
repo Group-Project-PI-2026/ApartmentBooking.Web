@@ -298,3 +298,91 @@ button.tile {
   font: var(--font-caption);
   color: var(--color-on-accent);
 }
+
+@media (max-width: 1280px) {
+  .gallery {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+
+  .bookingCard {
+    width: 420px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding-top: var(--space-4);
+  }
+
+  .layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bookingCard {
+    position: static;
+    width: 100%;
+  }
+
+  .amenities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .breadcrumbs {
+    flex-wrap: wrap;
+  }
+
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+    height: auto;
+  }
+
+  .mainPhoto {
+    height: 240px;
+  }
+
+  .tiles {
+    height: 180px;
+  }
+
+  .bookingCard,
+  .terms {
+    padding: var(--space-2);
+  }
+
+  .viewerPhoto {
+    max-width: calc(100vw - 32px);
+  }
+
+  .viewerPrev {
+    left: var(--space-2);
+  }
+
+  .viewerNext {
+    right: var(--space-2);
+  }
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    gap: var(--space-6);
+  }
+
+  .main {
+    display: contents;
+  }
+
+  .gallery {
+    order: -2;
+  }
+
+  .bookingCard {
+    order: -1;
+  }
+}

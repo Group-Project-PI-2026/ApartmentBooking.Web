@@ -119,11 +119,43 @@
 }
 
 .bannerAction {
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .faq {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    gap: var(--space-6);
+    padding-top: var(--space-4);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-3);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sectionHeader {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .bannerAction {
+    width: 100%;
+  }
 }
