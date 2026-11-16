@@ -82,18 +82,20 @@ export const propertyCabinetRoutes: RouteObject[] = [
   },
   {
     path: p.managerRequests,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Заявки на співпрацю" screen="24, 24A-24E" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerRequestsPage/ManagerRequestsPage').then(
+          (m) => m.ManagerRequestsPage,
+        ),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerRequestDetails,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Розгляд заявки" screen="25, 25A-25F" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerRequestPage/ManagerRequestPage').then((m) => m.ManagerRequestPage),
+      { roles: [Role.Manager] },
     ),
   },
   {
