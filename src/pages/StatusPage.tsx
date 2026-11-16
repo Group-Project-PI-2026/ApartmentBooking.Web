@@ -1,21 +1,33 @@
 import { paths } from '@/shared/routes/paths'
-import { ButtonLink, Container } from '@/shared/ui'
+import { Button, ButtonLink, Container } from '@/shared/ui'
 import styles from './StatusPage.module.css'
 
 interface Props {
   title: string
   text: string
+  onReload?: () => void
 }
 
-export function StatusPage({ title, text }: Props) {
+export function StatusPage({ title, text, onReload }: Props) {
   return (
     <Container className={styles.page}>
       <section className={styles.card}>
         <h1>{title}</h1>
         <p className={styles.text}>{text}</p>
-        <ButtonLink to={paths.home} className={styles.action}>
-          На головну
-        </ButtonLink>
+        <div className={styles.actions}>
+          {onReload && (
+            <Button className={styles.action} onClick={onReload}>
+              Оновити сторінку
+            </Button>
+          )}
+          <ButtonLink
+            to={paths.home}
+            variant={onReload ? 'secondary' : 'primary'}
+            className={styles.action}
+          >
+            На головну
+          </ButtonLink>
+        </div>
       </section>
     </Container>
   )
