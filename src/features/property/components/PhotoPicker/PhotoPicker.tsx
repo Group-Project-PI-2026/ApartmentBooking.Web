@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import photoIcon from '@/shared/assets/icons/document.svg'
 import { Button } from '@/shared/ui'
 import styles from './PhotoPicker.module.css'
 
@@ -46,6 +47,7 @@ export function PhotoPicker() {
           add(e.dataTransfer.files)
         }}
       >
+        <img src={photoIcon} alt="" className={styles.icon} />
         <span>Додайте фотографії апартаментів</span>
         <Button
           variant="secondary"

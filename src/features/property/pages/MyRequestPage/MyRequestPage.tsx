@@ -13,8 +13,11 @@ import {
   type OwnerRequestStatus,
 } from '../../api/ownerRequests'
 import { requestStatusLabel, requestStatusTone } from '../../requestStatus'
+import { PhotoPlaceholder } from '../../components/PhotoPlaceholder/PhotoPlaceholder'
 import { ClarificationForm } from './ClarificationForm'
 import styles from './MyRequestPage.module.css'
+
+const placeholderSlots = ['first', 'second', 'third']
 
 function Card({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -132,17 +135,21 @@ export function MyRequestPage() {
             </ul>
           </Card>
 
-          {request.photoUrls.length > 0 && (
-            <Card title="Додані фотографії">
-              <ul className={styles.photos}>
-                {request.photoUrls.map((url) => (
-                  <li key={url}>
-                    <img src={url} alt="" className={styles.photo} />
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          )}
+          <Card title="Додані фотографії">
+            <ul className={styles.photos}>
+              {request.photoUrls.length > 0
+                ? request.photoUrls.map((url) => (
+                    <li key={url}>
+                      <img src={url} alt="" className={styles.photo} />
+                    </li>
+                  ))
+                : placeholderSlots.map((slot) => (
+                    <li key={slot}>
+                      <PhotoPlaceholder />
+                    </li>
+                  ))}
+            </ul>
+          </Card>
 
           {status === 'NeedsClarification' && (
             <Card title="Уточнення за запитом менеджера">
