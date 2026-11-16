@@ -1,11 +1,12 @@
 import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
 import { PagePlaceholder } from '@/shared/ui'
+import { HomePage } from './pages/HomePage/HomePage'
 import { bookingPaths as p } from './paths'
 
 export const bookingHomeRoute: RouteObject = {
   index: true,
-  element: <PagePlaceholder title="Головна" screen="01" />,
+  element: <HomePage />,
 }
 
 export const bookingPublicRoutes: RouteObject[] = [
