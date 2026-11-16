@@ -25,7 +25,7 @@ npm run backend
 npm run dev
 ```
 
-Run `npm run backend` and `npm run dev` in separate terminals.
+Run `npm run backend` and `npm run dev` in separate terminals. On macOS / Linux use `npm run backend:mac` instead of `npm run backend`.
 
 | Service  | URL                   |
 | -------- | --------------------- |
