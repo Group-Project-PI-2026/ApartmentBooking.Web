@@ -1,7 +1,6 @@
 import type { RouteObject } from 'react-router'
-import { RequireAuth, Role } from '@/shared/auth'
+import { Role } from '@/shared/auth'
 import { lazyPage } from '@/shared/routes/lazyPage'
-import { PagePlaceholder } from '@/shared/ui'
 import { bookingPaths as p } from './paths'
 
 const tenant = { roles: [Role.Tenant] }
@@ -87,26 +86,26 @@ export const bookingCabinetRoutes: RouteObject[] = [
   },
   {
     path: p.managerCalendar,
-    element: (
-      <RequireAuth {...manager}>
-        <PagePlaceholder title="Календар" screen="21" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/Manager/ManagerCalendarPage').then((m) => m.ManagerCalendarPage),
+      manager,
     ),
   },
   {
     path: p.managerBookings,
-    element: (
-      <RequireAuth {...manager}>
-        <PagePlaceholder title="Бронювання" screen="22" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/Manager/ManagerBookingsPage').then((m) => m.ManagerBookingsPage),
+      manager,
     ),
   },
   {
     path: p.managerBookingDetails,
-    element: (
-      <RequireAuth {...manager}>
-        <PagePlaceholder title="Деталі бронювання" screen="23" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/Manager/ManagerBookingDetailsPage').then(
+          (m) => m.ManagerBookingDetailsPage,
+        ),
+      manager,
     ),
   },
 ]
