@@ -31,6 +31,10 @@
   gap: var(--space-4);
 }
 
+.stretch {
+  align-self: stretch;
+}
+
 .fields {
   display: grid;
   grid-template-columns: repeat(3, 320px);
