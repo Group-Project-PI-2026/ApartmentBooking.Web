@@ -12,6 +12,24 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+    build: {
+      rolldownOptions: {
+        output: {
+          codeSplitting: {
+            groups: [
+              { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
+              { name: 'router', test: /node_modules[\\/]react-router[\\/]/ },
+              { name: 'query', test: /node_modules[\\/]@tanstack[\\/]/ },
+              {
+                name: 'auth',
+                test: /node_modules[\\/](oidc-client-ts|react-oidc-context|jwt-decode)[\\/]/,
+              },
+              { name: 'vendor', test: /node_modules[\\/]/ },
+            ],
+          },
+        },
+      },
+    },
     server: {
       port: 5173,
       strictPort: true,

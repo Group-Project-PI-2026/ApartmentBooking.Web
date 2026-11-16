@@ -9,7 +9,9 @@ import { CabinetLayout } from '@/layouts/CabinetLayout'
 import { PublicLayout } from '@/layouts/PublicLayout'
 import { AuthCallbackPage } from '@/pages/AuthCallbackPage'
 import { ForbiddenPage } from '@/pages/ForbiddenPage'
+import { HydrateFallback } from '@/pages/HydrateFallback'
 import { NotFoundPage } from '@/pages/NotFoundPage'
+import { lazyPage } from '@/shared/routes/lazyPage'
 import { paths } from '@/shared/routes/paths'
 
 export const router = createBrowserRouter([
@@ -17,6 +19,7 @@ export const router = createBrowserRouter([
   {
     path: paths.home,
     element: <PublicLayout />,
+    HydrateFallback,
     children: [
       bookingHomeRoute,
       ...bookingPublicRoutes,
@@ -26,7 +29,7 @@ export const router = createBrowserRouter([
         ? [
             {
               path: '/dev/ui',
-              lazy: async () => ({ Component: (await import('@/pages/UiKitPage')).UiKitPage }),
+              ...lazyPage(() => import('@/pages/UiKitPage').then((m) => m.UiKitPage)),
             },
           ]
         : []),
@@ -35,6 +38,7 @@ export const router = createBrowserRouter([
   },
   {
     element: <CabinetLayout />,
+    HydrateFallback,
     children: [...bookingCabinetRoutes, ...propertyCabinetRoutes],
   },
 ])

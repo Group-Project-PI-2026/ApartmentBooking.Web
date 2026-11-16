@@ -1,50 +1,52 @@
 import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
+import { lazyPage } from '@/shared/routes/lazyPage'
 import { PagePlaceholder } from '@/shared/ui'
-import { ApartmentPage } from './pages/ApartmentPage/ApartmentPage'
-import { BookingDetailsPage } from './pages/BookingDetailsPage/BookingDetailsPage'
-import { CheckoutPage } from './pages/CheckoutPage/CheckoutPage'
-import { HomePage } from './pages/HomePage/HomePage'
-import { PaymentStatusPage } from './pages/PaymentStatusPage/PaymentStatusPage'
-import { SearchPage } from './pages/SearchPage/SearchPage'
 import { bookingPaths as p } from './paths'
+
+const tenant = { roles: [Role.Tenant] }
+const manager = { roles: [Role.Manager] }
 
 export const bookingHomeRoute: RouteObject = {
   index: true,
-  element: <HomePage />,
+  ...lazyPage(() => import('./pages/HomePage/HomePage').then((m) => m.HomePage)),
 }
 
 export const bookingPublicRoutes: RouteObject[] = [
-  { path: p.search, element: <SearchPage /> },
-  { path: p.apartment, element: <ApartmentPage /> },
+  {
+    path: p.search,
+    ...lazyPage(() => import('./pages/SearchPage/SearchPage').then((m) => m.SearchPage)),
+  },
+  {
+    path: p.apartment,
+    ...lazyPage(() => import('./pages/ApartmentPage/ApartmentPage').then((m) => m.ApartmentPage)),
+  },
   {
     path: p.checkout,
-    element: (
-      <RequireAuth roles={[Role.Tenant]}>
-        <CheckoutPage />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/CheckoutPage/CheckoutPage').then((m) => m.CheckoutPage),
+      tenant,
     ),
   },
   {
     path: p.paymentSuccess,
-    element: (
-      <RequireAuth roles={[Role.Tenant]}>
-        <PaymentStatusPage />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/PaymentStatusPage/PaymentStatusPage').then((m) => m.PaymentStatusPage),
+      tenant,
     ),
   },
   {
     path: p.bookingDetails,
-    element: (
-      <RequireAuth roles={[Role.Tenant]}>
-        <BookingDetailsPage />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/BookingDetailsPage/BookingDetailsPage').then((m) => m.BookingDetailsPage),
+      tenant,
     ),
   },
   {
     path: p.cancelBooking,
     element: (
-      <RequireAuth roles={[Role.Tenant]}>
+      <RequireAuth {...tenant}>
         <PagePlaceholder title="Скасування бронювання" screen="11, 11A" />
       </RequireAuth>
     ),
@@ -61,7 +63,7 @@ export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.myBookings,
     element: (
-      <RequireAuth roles={[Role.Tenant]}>
+      <RequireAuth {...tenant}>
         <PagePlaceholder title="Мої бронювання" screen="10, 10A" />
       </RequireAuth>
     ),
@@ -85,7 +87,7 @@ export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.managerCalendar,
     element: (
-      <RequireAuth roles={[Role.Manager]}>
+      <RequireAuth {...manager}>
         <PagePlaceholder title="Календар" screen="21" />
       </RequireAuth>
     ),
@@ -93,7 +95,7 @@ export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.managerBookings,
     element: (
-      <RequireAuth roles={[Role.Manager]}>
+      <RequireAuth {...manager}>
         <PagePlaceholder title="Бронювання" screen="22" />
       </RequireAuth>
     ),
@@ -101,7 +103,7 @@ export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.managerBookingDetails,
     element: (
-      <RequireAuth roles={[Role.Manager]}>
+      <RequireAuth {...manager}>
         <PagePlaceholder title="Деталі бронювання" screen="23" />
       </RequireAuth>
     ),
