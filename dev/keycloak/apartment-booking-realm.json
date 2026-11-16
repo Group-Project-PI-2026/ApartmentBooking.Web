@@ -11,20 +11,35 @@
   "defaultLocale": "uk",
   "roles": {
     "realm": [
-      { "name": "tenant" },
-      { "name": "owner" },
-      { "name": "manager" },
-      { "name": "admin" },
-      { "name": "offline_access" },
-      { "name": "uma_authorization" }
+      {
+        "name": "tenant"
+      },
+      {
+        "name": "owner"
+      },
+      {
+        "name": "manager"
+      },
+      {
+        "name": "admin"
+      },
+      {
+        "name": "offline_access"
+      },
+      {
+        "name": "uma_authorization"
+      },
+      {
+        "name": "default-roles-apartment-booking",
+        "composite": true,
+        "composites": {
+          "realm": ["offline_access", "uma_authorization", "tenant"]
+        }
+      }
     ]
   },
   "defaultRole": {
-    "name": "default-roles-apartment-booking",
-    "composite": true,
-    "composites": {
-      "realm": ["offline_access", "uma_authorization", "tenant"]
-    }
+    "name": "default-roles-apartment-booking"
   },
   "clients": [
     {
@@ -50,8 +65,14 @@
       "lastName": "Орендар",
       "enabled": true,
       "emailVerified": true,
-      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
-      "realmRoles": ["default-roles-apartment-booking"]
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Test1234!",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["default-roles-apartment-booking", "tenant"]
     },
     {
       "username": "owner@myrent.local",
@@ -60,7 +81,13 @@
       "lastName": "Власник",
       "enabled": true,
       "emailVerified": true,
-      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Test1234!",
+          "temporary": false
+        }
+      ],
       "realmRoles": ["default-roles-apartment-booking", "owner"]
     },
     {
@@ -70,7 +97,13 @@
       "lastName": "Менеджер",
       "enabled": true,
       "emailVerified": true,
-      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Test1234!",
+          "temporary": false
+        }
+      ],
       "realmRoles": ["default-roles-apartment-booking", "manager"]
     },
     {
@@ -80,7 +113,13 @@
       "lastName": "Адміністратор",
       "enabled": true,
       "emailVerified": true,
-      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "Test1234!",
+          "temporary": false
+        }
+      ],
       "realmRoles": ["default-roles-apartment-booking", "admin"]
     }
   ]

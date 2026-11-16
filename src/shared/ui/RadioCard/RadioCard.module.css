@@ -1,0 +1,67 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) 20px;
+  background: var(--color-surface-subtle);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.radio {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.input:checked + .radio {
+  border: 6px solid var(--color-accent);
+}
+
+.input:focus-visible + .radio {
+  box-shadow: 0 0 0 2px var(--color-focus);
+}
+
+.label {
+  font: var(--font-body);
+  color: var(--color-text);
+}
+
+.description {
+  padding-left: 32px;
+  font: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.input:disabled + .radio {
+  background: var(--color-disabled);
+  border-color: var(--color-disabled);
+}
+
+.disabled .label,
+.disabled .description {
+  color: var(--color-disabled-text);
+}

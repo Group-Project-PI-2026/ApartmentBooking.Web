@@ -20,3 +20,9 @@ export function formatGuests(count: number | string): string {
 export function formatNights(count: number): string {
   return `${count} ${plural(count, 'ніч', 'ночі', 'ночей')}`
 }
+
+export function formatFileSize(bytes: number): string {
+  const decimal = new Intl.NumberFormat('uk-UA', { maximumFractionDigits: 1 })
+  if (bytes < 1024 * 1024) return `${decimal.format(bytes / 1024)} КБ`
+  return `${decimal.format(bytes / 1024 / 1024)} МБ`
+}

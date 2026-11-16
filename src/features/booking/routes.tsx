@@ -2,6 +2,7 @@ import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
 import { PagePlaceholder } from '@/shared/ui'
 import { ApartmentPage } from './pages/ApartmentPage/ApartmentPage'
+import { CheckoutPage } from './pages/CheckoutPage/CheckoutPage'
 import { HomePage } from './pages/HomePage/HomePage'
 import { SearchPage } from './pages/SearchPage/SearchPage'
 import { bookingPaths as p } from './paths'
@@ -18,7 +19,7 @@ export const bookingPublicRoutes: RouteObject[] = [
     path: p.checkout,
     element: (
       <RequireAuth roles={[Role.Tenant]}>
-        <PagePlaceholder title="Оформлення бронювання" screen="06, 07" />
+        <CheckoutPage />
       </RequireAuth>
     ),
   },

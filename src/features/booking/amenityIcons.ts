@@ -19,7 +19,7 @@ export function amenityIcon(name: string): string | undefined {
   return key ? icons[key] : undefined
 }
 
-const locationFiles = import.meta.glob<string>('./assets/location.svg', {
+const locationFiles = import.meta.glob<string>('./assets/amenities/location.svg', {
   eager: true,
   import: 'default',
 })

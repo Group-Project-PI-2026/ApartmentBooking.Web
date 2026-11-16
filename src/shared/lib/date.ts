@@ -61,3 +61,17 @@ export function monthGrid(month: Date): Array<IsoDate | null> {
 export function nightsBetween(checkIn: IsoDate, checkOut: IsoDate): number {
   return Math.round((fromIso(checkOut).getTime() - fromIso(checkIn).getTime()) / 86_400_000)
 }
+
+const dayMonth = new Intl.DateTimeFormat('uk-UA', { day: 'numeric', month: 'long' })
+
+export function formatDateRange(checkIn: IsoDate, checkOut: IsoDate): string {
+  const start = fromIso(checkIn)
+  const end = fromIso(checkOut)
+  if (start.getFullYear() !== end.getFullYear()) {
+    return `${formatLongDate(checkIn)} – ${formatLongDate(checkOut)}`
+  }
+  if (start.getMonth() !== end.getMonth()) {
+    return `${dayMonth.format(start)} – ${dayMonth.format(end)} ${end.getFullYear()}`
+  }
+  return `${start.getDate()}–${dayMonth.format(end)} ${end.getFullYear()}`
+}
