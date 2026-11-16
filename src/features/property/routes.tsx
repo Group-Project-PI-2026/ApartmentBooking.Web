@@ -58,26 +58,26 @@ export const propertyCabinetRoutes: RouteObject[] = [
   },
   {
     path: p.managerApartments,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Апартаменти" screen="19, 19A-19F" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerApartmentsPage/ManagerApartmentsPage').then(
+          (m) => m.ManagerApartmentsPage,
+        ),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerApartmentNew,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Додати апартаменти" screen="20, 20B-20D" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ApartmentFormPage/ApartmentFormPage').then((m) => m.ApartmentFormPage),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerApartmentEdit,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Редагувати апартаменти" screen="20A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ApartmentFormPage/ApartmentFormPage').then((m) => m.ApartmentFormPage),
+      { roles: [Role.Manager] },
     ),
   },
   {

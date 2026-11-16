@@ -1,5 +1,5 @@
-import { plural } from '@/shared/lib/format'
 import type { CreateOwnerRequest } from '../../api/ownerRequests'
+import { roomOptions } from '../../apartmentOptions'
 
 export interface ApplyForm {
   firstName: string
@@ -20,29 +20,7 @@ export interface ApplyForm {
 
 export type ApplyErrors = Partial<Record<keyof ApplyForm, string>>
 
-export const propertyTypes = ['Апартаменти', 'Квартира', 'Студія'].map((v) => ({
-  value: v,
-  label: v,
-}))
-
-export const roomOptions = [1, 2, 3, 4, 5].map((n) => ({
-  value: String(n),
-  label: `${n} ${plural(n, 'кімната', 'кімнати', 'кімнат')}`,
-}))
-
-export const guestOptions = Array.from({ length: 10 }, (_, i) => i + 1).map((n) => ({
-  value: String(n),
-  label: `${n} ${plural(n, 'гість', 'гості', 'гостей')}`,
-}))
-
-export const amenityOptions = [
-  'Wi-Fi',
-  'Кухня',
-  'Пральна машина',
-  'Кондиціонер',
-  'Паркування',
-  'Самостійне заселення',
-]
+export { amenityOptions, guestOptions, propertyTypes, roomOptions } from '../../apartmentOptions'
 
 const required: (keyof ApplyForm)[] = [
   'firstName',
