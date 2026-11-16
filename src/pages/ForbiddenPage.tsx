@@ -1,5 +1,10 @@
-import { PagePlaceholder } from '@/shared/ui'
+import { StatusPage } from './StatusPage'
 
 export function ForbiddenPage() {
-  return <PagePlaceholder title="Немає доступу" screen="K1" />
+  return (
+    <StatusPage
+      title="Немає доступу"
+      text="У вас немає доступу до цього розділу. Поверніться на головну сторінку, щоб продовжити."
+    />
+  )
 }

@@ -1,5 +1,10 @@
-import { PagePlaceholder } from '@/shared/ui'
+import { StatusPage } from './StatusPage'
 
 export function NotFoundPage() {
-  return <PagePlaceholder title="Сторінку не знайдено" screen="K2" />
+  return (
+    <StatusPage
+      title="Сторінку не знайдено"
+      text="Сторінку не знайдено. Можливо, її адресу змінено або вона більше недоступна."
+    />
+  )
 }

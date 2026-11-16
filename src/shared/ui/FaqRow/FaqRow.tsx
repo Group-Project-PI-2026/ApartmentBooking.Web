@@ -5,29 +5,31 @@ import styles from './FaqRow.module.css'
 interface Props {
   question: string
   answer?: ReactNode
+  defaultOpen?: boolean
   className?: string
 }
 
-export function FaqRow({ question, answer, className }: Props) {
-  const [open, setOpen] = useState(false)
+export function FaqRow({ question, answer, defaultOpen = false, className }: Props) {
+  const [open, setOpen] = useState(defaultOpen)
   const answerId = useId()
+  const expanded = Boolean(answer) && open
 
   return (
-    <div className={cn(styles.row, className)}>
+    <div className={cn(styles.item, className)}>
       <button
         type="button"
         className={styles.question}
         onClick={() => setOpen((o) => !o)}
-        aria-expanded={answer ? open : undefined}
+        aria-expanded={answer ? expanded : undefined}
         aria-controls={answer ? answerId : undefined}
         disabled={!answer}
       >
         <span>{question}</span>
-        <span className={cn(styles.plus, open && styles.open)} aria-hidden>
-          +
+        <span className={styles.sign} aria-hidden>
+          {expanded ? '−' : '+'}
         </span>
       </button>
-      {answer && open && (
+      {expanded && (
         <div id={answerId} className={styles.answer}>
           {answer}
         </div>
