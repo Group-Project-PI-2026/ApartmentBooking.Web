@@ -11,10 +11,9 @@ export const propertyPublicRoutes: RouteObject[] = [
   },
   {
     path: p.ownerApply,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Заявка на співпрацю" screen="15, 15A-15C" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerApplyPage/OwnerApplyPage').then((m) => m.OwnerApplyPage),
+      { auth: true },
     ),
   },
   {
