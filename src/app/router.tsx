@@ -22,6 +22,14 @@ export const router = createBrowserRouter([
       ...bookingPublicRoutes,
       ...propertyPublicRoutes,
       { path: paths.forbidden, element: <ForbiddenPage /> },
+      ...(import.meta.env.DEV
+        ? [
+            {
+              path: '/dev/ui',
+              lazy: async () => ({ Component: (await import('@/pages/UiKitPage')).UiKitPage }),
+            },
+          ]
+        : []),
       { path: '*', element: <NotFoundPage /> },
     ],
   },

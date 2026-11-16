@@ -15,6 +15,8 @@
   --color-error-surface: #fde9ec;
   --color-disabled: #e6ebea;
   --color-disabled-text: #819092;
+  --color-focus: #83c6ca;
+  --color-on-accent: #ffffff;
 
   --font-family: 'Inter Tight Variable', sans-serif;
 
@@ -24,6 +26,8 @@
   --font-body: 400 16px / 24px var(--font-family);
   --font-caption: 400 14px / 20px var(--font-family);
   --font-control: 500 16px / 24px var(--font-family);
+  --font-control-compact: 500 14px / 20px var(--font-family);
+  --font-plus: 600 20px / 28px var(--font-family);
 
   --space-1: 8px;
   --space-2: 16px;
@@ -33,12 +37,20 @@
   --space-8: 64px;
   --space-10: 80px;
 
+  --radius-compact: 8px;
   --radius-control: 10px;
+  --radius-panel: 12px;
   --radius-card: 16px;
   --radius-pill: 9999px;
 
   --border-width: 1px;
+  --focus-width: 2px;
   --control-height: 48px;
+  --control-height-compact: 36px;
+
+  --header-height: 80px;
+  --footer-height: 120px;
+  --sidebar-width: 280px;
 
   --container-width: 1776px;
   --page-padding: 72px;

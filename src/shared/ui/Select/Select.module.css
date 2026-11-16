@@ -1,0 +1,13 @@
+.select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.select:invalid,
+.empty {
+  color: var(--color-text-muted);
+}
+
+.select:disabled {
+  cursor: not-allowed;
+}

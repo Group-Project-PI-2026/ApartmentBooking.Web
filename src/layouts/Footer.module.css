@@ -1,0 +1,34 @@
+.footer {
+  background: var(--color-surface-subtle);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  height: var(--footer-height);
+  padding: var(--space-3) var(--space-4);
+}
+
+.logo {
+  display: flex;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.link {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: 4px;
+  border-radius: 4px;
+}

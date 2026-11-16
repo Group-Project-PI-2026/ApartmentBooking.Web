@@ -1,0 +1,22 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+.cabinet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-10);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}

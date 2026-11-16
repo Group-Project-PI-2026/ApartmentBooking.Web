@@ -13,12 +13,6 @@ export const headerNav: NavItem[] = [
   { label: 'Допомога', to: bookingPaths.help },
 ]
 
-export const headerNavAuthenticated: NavItem[] = [
-  ...headerNav,
-  { label: 'Мої бронювання', to: bookingPaths.myBookings },
-  { label: 'Профіль', to: bookingPaths.profile },
-]
-
 export const footerNav: NavItem[] = [
   { label: 'Умови бронювання', to: bookingPaths.terms },
   { label: 'Політика конфіденційності', to: bookingPaths.privacy },

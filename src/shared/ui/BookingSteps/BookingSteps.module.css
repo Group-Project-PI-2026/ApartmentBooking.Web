@@ -1,0 +1,41 @@
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: var(--space-1);
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-1);
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-subtle);
+  font: var(--font-caption);
+  color: var(--color-text);
+}
+
+.label {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.active .number {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.active .label {
+  color: var(--color-text);
+}

@@ -1,0 +1,93 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.label {
+  font: var(--font-caption);
+  color: var(--color-text);
+}
+
+.helper {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.error {
+  font: var(--font-caption);
+  color: var(--color-error);
+}
+
+.control {
+  width: 100%;
+  height: var(--control-height);
+  padding: 0 var(--space-2);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  font: var(--font-body);
+  color: var(--color-text);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.control::placeholder {
+  color: var(--color-text-muted);
+}
+
+.control:focus,
+.control:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: inset 0 0 0 1px var(--color-focus);
+}
+
+.control[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.control:disabled {
+  background: var(--color-disabled);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+}
+
+.control:disabled::placeholder {
+  color: var(--color-disabled-text);
+}
+
+.withTrailing {
+  position: relative;
+}
+
+.withTrailing .control {
+  padding-right: calc(var(--space-2) * 2 + 20px);
+}
+
+.trailing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height);
+  padding: 0 var(--space-2);
+  background: none;
+  border: none;
+  pointer-events: none;
+}
+
+button.trailing {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+button.trailing:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: -4px;
+  border-radius: var(--radius-control);
+}
