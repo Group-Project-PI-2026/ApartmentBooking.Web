@@ -95,7 +95,7 @@ export function OwnersPage() {
         <h2>Поширені запитання</h2>
         <div className={styles.faq}>
           {faq.map((f) => (
-            <FaqRow key={f.question} question={f.question} answer={f.answer} />
+            <FaqRow key={f.question} question={f.question} answer={f.answer} defaultOpen />
           ))}
         </div>
       </section>
