@@ -17,6 +17,7 @@
   --color-disabled-text: #819092;
   --color-focus: #83c6ca;
   --color-on-accent: #ffffff;
+  --color-overlay: rgb(23 42 45 / 40%);
 
   --font-family: 'Inter Tight Variable', sans-serif;
 
@@ -51,6 +52,7 @@
   --header-height: 80px;
   --footer-height: 120px;
   --sidebar-width: 280px;
+  --modal-width: 640px;
 
   --container-width: 1776px;
   --page-padding: 72px;

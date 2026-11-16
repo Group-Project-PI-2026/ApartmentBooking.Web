@@ -1,0 +1,138 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 744px);
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.heroTop {
+  align-items: start;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.lead {
+  margin-top: calc(var(--space-2) * -1);
+  font: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.action {
+  min-width: 320px;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 744 / 400;
+  object-fit: cover;
+  border-radius: var(--radius-panel);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.stepNumber {
+  font: var(--font-h2);
+  color: var(--color-accent);
+}
+
+.muted {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.checkItem {
+  font: var(--font-body);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-card);
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.banner {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.bannerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action {
+    min-width: 0;
+    width: 100%;
+  }
+}

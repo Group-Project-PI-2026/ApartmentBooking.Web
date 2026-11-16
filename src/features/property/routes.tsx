@@ -1,33 +1,33 @@
 import type { RouteObject } from 'react-router'
 import { RequireAuth, Role } from '@/shared/auth'
+import { lazyPage } from '@/shared/routes/lazyPage'
 import { PagePlaceholder } from '@/shared/ui'
 import { propertyPaths as p } from './paths'
 
 export const propertyPublicRoutes: RouteObject[] = [
-  { path: p.owners, element: <PagePlaceholder title="Власникам" screen="14, 14A" /> },
+  {
+    path: p.owners,
+    ...lazyPage(() => import('./pages/OwnersPage/OwnersPage').then((m) => m.OwnersPage)),
+  },
   {
     path: p.ownerApply,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Заявка на співпрацю" screen="15, 15A-15C" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerApplyPage/OwnerApplyPage').then((m) => m.OwnerApplyPage),
+      { auth: true },
     ),
   },
   {
     path: p.myRequests,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Мої заявки" screen="16" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/MyRequestsPage/MyRequestsPage').then((m) => m.MyRequestsPage),
+      { auth: true },
     ),
   },
   {
     path: p.myRequestDetails,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Моя заявка" screen="16, 16A-16C" />
-      </RequireAuth>
-    ),
+    ...lazyPage(() => import('./pages/MyRequestPage/MyRequestPage').then((m) => m.MyRequestPage), {
+      auth: true,
+    }),
   },
 ]
 

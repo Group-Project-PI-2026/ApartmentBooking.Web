@@ -1,0 +1,16 @@
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-disabled);
+  border-radius: var(--radius-panel);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  background: var(--color-text-muted);
+  mask: url('@/shared/assets/icons/document.svg') center / contain no-repeat;
+}

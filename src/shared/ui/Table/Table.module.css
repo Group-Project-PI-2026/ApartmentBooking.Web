@@ -1,0 +1,31 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font: var(--font-caption);
+  color: var(--color-text);
+}
+
+.headCell,
+.cell {
+  padding: var(--space-3) var(--space-1);
+  border: var(--border-width) solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.headCell {
+  padding-block: var(--space-2);
+  background: var(--color-surface-subtle);
+  font-weight: inherit;
+}
+
+.row {
+  background: var(--color-surface);
+}
