@@ -1,23 +1,43 @@
 import { useEffect, useRef, useState } from 'react'
 import photoIcon from '@/shared/assets/icons/document.svg'
+import { cn } from '@/shared/lib/cn'
 import { Button } from '@/shared/ui'
 import styles from './PhotoPicker.module.css'
 
-interface Photo {
+export interface PickedPhoto {
   id: string
   url: string
   name: string
 }
 
-export function PhotoPicker() {
+interface Props {
+  value?: PickedPhoto[]
+  onChange?: (photos: PickedPhoto[]) => void
+  ordering?: boolean
+}
+
+function move<T>(list: T[], from: number, to: number): T[] {
+  const next = [...list]
+  const [item] = next.splice(from, 1)
+  next.splice(to, 0, item)
+  return next
+}
+
+export function PhotoPicker({ value, onChange, ordering = false }: Props) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [photos, setPhotos] = useState<Photo[]>([])
-  const urls = useRef(new Set<string>())
+  const [own, setOwn] = useState<PickedPhoto[]>([])
+  const photos = value ?? own
+  const created = useRef(new Set<string>())
 
   useEffect(() => {
-    const current = urls.current
-    return () => current.forEach((url) => URL.revokeObjectURL(url))
+    const urls = created.current
+    return () => urls.forEach((url) => URL.revokeObjectURL(url))
   }, [])
+
+  const update = (next: PickedPhoto[]) => {
+    if (!value) setOwn(next)
+    onChange?.(next)
+  }
 
   const add = (files: FileList | null) => {
     if (!files) return
@@ -25,16 +45,15 @@ export function PhotoPicker() {
       .filter((f) => f.type.startsWith('image/'))
       .map((f) => {
         const url = URL.createObjectURL(f)
-        urls.current.add(url)
+        created.current.add(url)
         return { id: crypto.randomUUID(), url, name: f.name }
       })
-    setPhotos((prev) => [...prev, ...added])
+    update([...photos, ...added])
   }
 
-  const remove = (photo: Photo) => {
-    URL.revokeObjectURL(photo.url)
-    urls.current.delete(photo.url)
-    setPhotos((prev) => prev.filter((p) => p.id !== photo.id))
+  const remove = (photo: PickedPhoto) => {
+    if (created.current.delete(photo.url)) URL.revokeObjectURL(photo.url)
+    update(photos.filter((p) => p.id !== photo.id))
   }
 
   return (
@@ -71,12 +90,50 @@ export function PhotoPicker() {
 
       {photos.length > 0 && (
         <ul className={styles.list}>
-          {photos.map((p) => (
-            <li key={p.id} className={styles.item}>
+          {photos.map((p, i) => (
+            <li key={p.id} className={cn(styles.item, ordering && styles.bordered)}>
               <img src={p.url} alt={p.name} className={styles.preview} />
-              <button type="button" className={styles.remove} onClick={() => remove(p)}>
-                Видалити фото
-              </button>
+              {ordering &&
+                (i === 0 ? (
+                  <span className={styles.main}>Головне фото</span>
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.link}
+                    onClick={() => update(move(photos, i, 0))}
+                  >
+                    Зробити головним
+                  </button>
+                ))}
+              <div className={styles.controls}>
+                {ordering && (
+                  <>
+                    <button
+                      type="button"
+                      className={styles.link}
+                      disabled={i === 0}
+                      onClick={() => update(move(photos, i, i - 1))}
+                    >
+                      Ліворуч
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.link}
+                      disabled={i === photos.length - 1}
+                      onClick={() => update(move(photos, i, i + 1))}
+                    >
+                      Праворуч
+                    </button>
+                  </>
+                )}
+                <button
+                  type="button"
+                  className={cn(styles.link, ordering && styles.danger)}
+                  onClick={() => remove(p)}
+                >
+                  Видалити фото
+                </button>
+              </div>
             </li>
           ))}
         </ul>

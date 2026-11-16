@@ -58,42 +58,44 @@ export const propertyCabinetRoutes: RouteObject[] = [
   },
   {
     path: p.managerApartments,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Апартаменти" screen="19, 19A-19F" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerApartmentsPage/ManagerApartmentsPage').then(
+          (m) => m.ManagerApartmentsPage,
+        ),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerApartmentNew,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Додати апартаменти" screen="20, 20B-20D" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ApartmentFormPage/ApartmentFormPage').then((m) => m.ApartmentFormPage),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerApartmentEdit,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Редагувати апартаменти" screen="20A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ApartmentFormPage/ApartmentFormPage').then((m) => m.ApartmentFormPage),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerRequests,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Заявки на співпрацю" screen="24, 24A-24E" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerRequestsPage/ManagerRequestsPage').then(
+          (m) => m.ManagerRequestsPage,
+        ),
+      { roles: [Role.Manager] },
     ),
   },
   {
     path: p.managerRequestDetails,
-    element: (
-      <RequireAuth roles={[Role.Manager]}>
-        <PagePlaceholder title="Розгляд заявки" screen="25, 25A-25F" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/ManagerRequestPage/ManagerRequestPage').then((m) => m.ManagerRequestPage),
+      { roles: [Role.Manager] },
     ),
   },
   {

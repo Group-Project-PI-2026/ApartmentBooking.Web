@@ -1,0 +1,16 @@
+.notice {
+  padding: var(--space-3);
+  border: var(--border-width) solid;
+  font: var(--font-body);
+  color: var(--color-text);
+}
+
+.success {
+  background: var(--color-success-surface);
+  border-color: var(--color-success);
+}
+
+.error {
+  background: var(--color-error-surface);
+  border-color: var(--color-error);
+}
