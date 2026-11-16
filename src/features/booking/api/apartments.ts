@@ -26,10 +26,18 @@ export function useDistricts() {
   })
 }
 
-export function useApartments(search: ApartmentSearch = {}) {
+export function useApartments(search: ApartmentSearch = {}, enabled = true) {
   const query = compact(search)
   return useQuery({
     queryKey: ['apartments', query],
     queryFn: () => unwrap(api.GET('/api/apartments', { params: { query } })),
+    enabled,
+  })
+}
+
+export function useApartment(id: string) {
+  return useQuery({
+    queryKey: ['apartment', id],
+    queryFn: () => unwrap(api.GET('/api/apartments/{id}', { params: { path: { id } } })),
   })
 }
