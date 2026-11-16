@@ -139,7 +139,7 @@ export function ManagerRequestsPage() {
       {items.length > 0 && (
         <section className={styles.card} aria-busy={isFetching}>
           <h2>Список заявок</h2>
-          <Table>
+          <Table className={styles.table}>
             <TableHeader columns={columns} />
             <TableBody>
               {items.map((r) => {

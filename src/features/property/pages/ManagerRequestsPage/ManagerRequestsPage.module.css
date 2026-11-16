@@ -67,3 +67,7 @@
     min-height: 0;
   }
 }
+
+.table :global(table) {
+  min-width: 960px;
+}
