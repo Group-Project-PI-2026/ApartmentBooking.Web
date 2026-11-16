@@ -27,6 +27,14 @@ export function useCurrentUser() {
 
   const logout = useCallback(() => signoutRedirect(), [signoutRedirect])
 
+  const runAccountAction = useCallback(
+    (action: 'UPDATE_PASSWORD' | 'UPDATE_PROFILE', returnTo: string = window.location.pathname) => {
+      sessionStorage.setItem(RETURN_TO_KEY, returnTo)
+      return signinRedirect({ extraQueryParams: { kc_action: action } })
+    },
+    [signinRedirect],
+  )
+
   return {
     isLoading: auth.isLoading,
     isAuthenticated: auth.isAuthenticated,
@@ -35,5 +43,6 @@ export function useCurrentUser() {
     hasRole,
     login,
     logout,
+    runAccountAction,
   }
 }

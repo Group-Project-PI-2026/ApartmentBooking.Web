@@ -1,6 +1,11 @@
 {
   "realm": "apartment-booking",
   "enabled": true,
+  "displayName": "MyRent",
+  "displayNameHtml": "MyRent",
+  "loginTheme": "keycloak.v2",
+  "accountTheme": "keycloak.v3",
+  "emailTheme": "keycloak",
   "registrationAllowed": true,
   "registrationEmailAsUsername": true,
   "loginWithEmailAllowed": true,
@@ -122,5 +127,8 @@
       ],
       "realmRoles": ["default-roles-apartment-booking", "admin"]
     }
-  ]
+  ],
+  "attributes": {
+    "darkMode": "false"
+  }
 }

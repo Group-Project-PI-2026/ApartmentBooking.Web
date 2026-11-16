@@ -57,29 +57,32 @@ export const bookingPublicRoutes: RouteObject[] = [
       tenant,
     ),
   },
-  { path: p.help, element: <PagePlaceholder title="Контакти та допомога" screen="28" /> },
+  {
+    path: p.help,
+    ...lazyPage(() => import('./pages/InfoPages/HelpPage').then((m) => m.HelpPage)),
+  },
   {
     path: p.terms,
-    element: <PagePlaceholder title="Умови бронювання та скасування" screen="29A" />,
+    ...lazyPage(() => import('./pages/InfoPages/TermsPage').then((m) => m.TermsPage)),
   },
-  { path: p.privacy, element: <PagePlaceholder title="Політика конфіденційності" screen="29B" /> },
+  {
+    path: p.privacy,
+    ...lazyPage(() => import('./pages/InfoPages/PrivacyPage').then((m) => m.PrivacyPage)),
+  },
 ]
 
 export const bookingCabinetRoutes: RouteObject[] = [
   {
     path: p.profile,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Профіль" screen="13, 13A, 13C, 13D" />
-      </RequireAuth>
-    ),
+    ...lazyPage(() => import('./pages/ProfilePage/ProfilePage').then((m) => m.ProfilePage), {
+      auth: true,
+    }),
   },
   {
     path: p.profileNotifications,
-    element: (
-      <RequireAuth>
-        <PagePlaceholder title="Сповіщення" screen="13B" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/ProfilePage/NotificationsPage').then((m) => m.NotificationsPage),
+      { auth: true },
     ),
   },
   {
