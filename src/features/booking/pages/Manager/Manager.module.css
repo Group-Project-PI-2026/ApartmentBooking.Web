@@ -1,0 +1,334 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.back {
+  align-self: flex-start;
+  font: var(--font-body);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.statusRow {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.periodNav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.navButton {
+  min-width: 280px;
+}
+
+.period {
+  min-width: 210px;
+  text-align: center;
+}
+
+.filtersRow {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.filter {
+  width: 320px;
+}
+
+.panel,
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  font: var(--font-body);
+  color: var(--color-text);
+}
+
+.card {
+  border-radius: var(--radius-card);
+}
+
+.caption {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.errorText {
+  color: var(--color-error);
+}
+
+.successText {
+  font: var(--font-caption);
+  color: var(--color-success);
+}
+
+.syncGrid {
+  display: grid;
+  grid-template-columns: 384px 324px 1fr;
+  margin: 0;
+}
+
+.syncGrid dt {
+  margin-bottom: var(--space-1);
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.syncGrid dd {
+  margin: 0;
+}
+
+.gridWrapper {
+  overflow-x: auto;
+}
+
+.grid {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font: var(--font-caption);
+}
+
+.grid th,
+.grid td {
+  border: var(--border-width) solid var(--color-border);
+  text-align: center;
+  font-weight: 400;
+}
+
+.gridHead {
+  height: 56px;
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+}
+
+.grid thead th:first-child,
+.gridApartment {
+  width: 252px;
+}
+
+.today {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  line-height: 1.2;
+}
+
+.gridApartment {
+  height: 82px;
+  padding: 0 var(--space-2);
+  background: var(--color-surface-subtle);
+  color: var(--color-text);
+}
+
+.gridCell {
+  height: 82px;
+}
+
+.free {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.reserved {
+  background: var(--color-warning-surface);
+  color: var(--color-text);
+}
+
+.confirmed {
+  background: var(--color-success-surface);
+  color: var(--color-text);
+}
+
+.blocked {
+  background: var(--color-disabled);
+  color: var(--color-text);
+}
+
+.external {
+  background: var(--color-surface-subtle);
+  color: var(--color-accent);
+}
+
+.cellButton {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cellButton:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 12px;
+  border: var(--border-width) solid var(--color-border);
+  font: var(--font-caption);
+}
+
+.actionsRow {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.warningBox {
+  padding: var(--space-2);
+  background: var(--color-warning-surface);
+  border: var(--border-width) solid var(--color-warning);
+  font: var(--font-caption);
+  color: var(--color-text);
+}
+
+.infoRows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.infoRow dt {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.infoRow dd {
+  margin: 0;
+  font: var(--font-body);
+  color: var(--color-text);
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.twoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.modalActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.filtersGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 320px));
+  gap: var(--space-4) var(--space-2);
+  align-items: end;
+}
+
+.resetButton {
+  width: 280px;
+}
+
+.emptyCell {
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.tone_success {
+  color: var(--color-success);
+}
+
+.tone_warning {
+  color: var(--color-warning);
+}
+
+.tone_error {
+  color: var(--color-error);
+}
+
+.detailsButton {
+  width: 100%;
+  min-width: 0;
+}
+
+.detailsColumns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.photo {
+  height: 260px;
+  background: var(--color-disabled);
+  border-radius: var(--radius-control);
+}
+
+.note {
+  max-width: 360px;
+}
+
+.inlineActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.noteButton {
+  min-width: 280px;
+}
+
+.cardAction {
+  align-self: flex-start;
+  min-width: 280px;
+}
+
+.successModal {
+  background: var(--color-success-surface);
+  border-color: var(--color-success);
+}
