@@ -1,0 +1,16 @@
+export const propertyPaths = {
+  owners: '/owners',
+  ownerApply: '/owners/apply',
+  myRequests: '/owners/requests',
+  myRequestDetails: '/owners/requests/:id',
+  ownerObjects: '/owner/objects',
+  ownerObjectDetails: '/owner/objects/:id',
+  ownerStatistics: '/owner/statistics',
+  managerApartments: '/manager/apartments',
+  managerApartmentNew: '/manager/apartments/new',
+  managerApartmentEdit: '/manager/apartments/:id/edit',
+  managerRequests: '/manager/requests',
+  managerRequestDetails: '/manager/requests/:id',
+  adminUsers: '/admin/users',
+  adminUserDetails: '/admin/users/:id',
+} as const

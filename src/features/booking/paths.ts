@@ -1,0 +1,16 @@
+export const bookingPaths = {
+  search: '/apartments',
+  apartment: '/apartments/:id',
+  checkout: '/apartments/:id/booking',
+  paymentSuccess: '/bookings/payment-success',
+  myBookings: '/bookings',
+  bookingDetails: '/bookings/:id',
+  profile: '/profile',
+  profileNotifications: '/profile/notifications',
+  help: '/help',
+  terms: '/terms',
+  privacy: '/privacy',
+  managerCalendar: '/manager/calendar',
+  managerBookings: '/manager/bookings',
+  managerBookingDetails: '/manager/bookings/:id',
+} as const

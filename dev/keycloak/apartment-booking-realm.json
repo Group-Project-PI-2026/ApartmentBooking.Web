@@ -1,0 +1,87 @@
+{
+  "realm": "apartment-booking",
+  "enabled": true,
+  "registrationAllowed": true,
+  "registrationEmailAsUsername": true,
+  "loginWithEmailAllowed": true,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "internationalizationEnabled": true,
+  "supportedLocales": ["uk", "en"],
+  "defaultLocale": "uk",
+  "roles": {
+    "realm": [
+      { "name": "tenant" },
+      { "name": "owner" },
+      { "name": "manager" },
+      { "name": "admin" },
+      { "name": "offline_access" },
+      { "name": "uma_authorization" }
+    ]
+  },
+  "defaultRole": {
+    "name": "default-roles-apartment-booking",
+    "composite": true,
+    "composites": {
+      "realm": ["offline_access", "uma_authorization", "tenant"]
+    }
+  },
+  "clients": [
+    {
+      "clientId": "apartment-booking-spa",
+      "name": "MyRent SPA",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:5173/*"],
+      "webOrigins": ["http://localhost:5173"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "tenant@myrent.local",
+      "email": "tenant@myrent.local",
+      "firstName": "Тест",
+      "lastName": "Орендар",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "realmRoles": ["default-roles-apartment-booking"]
+    },
+    {
+      "username": "owner@myrent.local",
+      "email": "owner@myrent.local",
+      "firstName": "Тест",
+      "lastName": "Власник",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "realmRoles": ["default-roles-apartment-booking", "owner"]
+    },
+    {
+      "username": "manager@myrent.local",
+      "email": "manager@myrent.local",
+      "firstName": "Тест",
+      "lastName": "Менеджер",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "realmRoles": ["default-roles-apartment-booking", "manager"]
+    },
+    {
+      "username": "admin@myrent.local",
+      "email": "admin@myrent.local",
+      "firstName": "Тест",
+      "lastName": "Адміністратор",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [{ "type": "password", "value": "Test1234!", "temporary": false }],
+      "realmRoles": ["default-roles-apartment-booking", "admin"]
+    }
+  ]
+}
