@@ -1,7 +1,6 @@
 import type { RouteObject } from 'react-router'
-import { RequireAuth, Role } from '@/shared/auth'
+import { Role } from '@/shared/auth'
 import { lazyPage } from '@/shared/routes/lazyPage'
-import { PagePlaceholder } from '@/shared/ui'
 import { propertyPaths as p } from './paths'
 
 export const propertyPublicRoutes: RouteObject[] = [
@@ -34,26 +33,26 @@ export const propertyPublicRoutes: RouteObject[] = [
 export const propertyCabinetRoutes: RouteObject[] = [
   {
     path: p.ownerObjects,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Мої об’єкти" screen="17, 17B" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerObjectsPage/OwnerObjectsPage').then((m) => m.OwnerObjectsPage),
+      { roles: [Role.Owner] },
     ),
   },
   {
     path: p.ownerObjectDetails,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Інформація про об’єкт" screen="17A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/OwnerObjectPage/OwnerObjectPage').then((m) => m.OwnerObjectPage),
+      { roles: [Role.Owner] },
     ),
   },
   {
     path: p.ownerStatistics,
-    element: (
-      <RequireAuth roles={[Role.Owner]}>
-        <PagePlaceholder title="Статистика" screen="18, 18A" />
-      </RequireAuth>
+    ...lazyPage(
+      () =>
+        import('./pages/OwnerStatisticsPage/OwnerStatisticsPage').then(
+          (m) => m.OwnerStatisticsPage,
+        ),
+      { roles: [Role.Owner] },
     ),
   },
   {
@@ -100,18 +99,15 @@ export const propertyCabinetRoutes: RouteObject[] = [
   },
   {
     path: p.adminUsers,
-    element: (
-      <RequireAuth roles={[Role.Admin]}>
-        <PagePlaceholder title="Користувачі" screen="26, 26A" />
-      </RequireAuth>
+    ...lazyPage(
+      () => import('./pages/AdminUsersPage/AdminUsersPage').then((m) => m.AdminUsersPage),
+      { roles: [Role.Admin] },
     ),
   },
   {
     path: p.adminUserDetails,
-    element: (
-      <RequireAuth roles={[Role.Admin]}>
-        <PagePlaceholder title="Користувач" screen="27, 27A-27F" />
-      </RequireAuth>
-    ),
+    ...lazyPage(() => import('./pages/AdminUserPage/AdminUserPage').then((m) => m.AdminUserPage), {
+      roles: [Role.Admin],
+    }),
   },
 ]

@@ -1,0 +1,123 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.muted {
+  font: var(--font-body);
+  color: var(--color-text-muted);
+}
+
+.caption {
+  font: var(--font-caption);
+  color: var(--color-text-muted);
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 320px)) minmax(0, 200px);
+  align-items: start;
+  gap: var(--space-3);
+  max-width: 940px;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.apply {
+  margin-top: 0;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: 300px;
+  padding: var(--space-6);
+  background: var(--color-surface-subtle);
+  border: var(--border-width) solid var(--color-border);
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.results[aria-busy='true'] {
+  opacity: 0.6;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+}
+
+.value {
+  font: var(--font-h1);
+  color: var(--color-text);
+}
+
+.byObject {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.byObject h2 {
+  padding-inline: var(--space-3);
+}
+
+.table :global(table) {
+  min-width: 640px;
+}
+
+.table :global(th),
+.table :global(td) {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  padding-inline: var(--space-2);
+}
+
+.table :global(th) {
+  border-top: none;
+}
+
+@media (max-width: 900px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .empty {
+    min-height: 0;
+    padding: var(--space-3);
+  }
+}
