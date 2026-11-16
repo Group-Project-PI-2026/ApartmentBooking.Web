@@ -24,7 +24,7 @@
 }
 
 .edit {
-  min-width: 180px;
+  min-width: min(180px, 100%);
   margin-left: auto;
 }
 
@@ -53,7 +53,7 @@
 
 .status {
   align-self: flex-start;
-  min-width: 230px;
+  min-width: min(230px, 100%);
 }
 
 .fields {
@@ -75,7 +75,7 @@
 
 .action {
   align-self: flex-start;
-  min-width: 300px;
+  min-width: min(300px, 100%);
 }
 
 .link {
@@ -92,4 +92,39 @@
   outline: var(--focus-width) solid var(--color-focus);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+@media (max-width: 1024px) {
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-2);
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+  }
+
+  .edit {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .grid,
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .action {
+    width: 100%;
+  }
 }

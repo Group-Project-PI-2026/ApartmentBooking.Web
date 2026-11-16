@@ -161,3 +161,47 @@
 .table tbody td {
   border-top: var(--border-width) solid var(--color-border);
 }
+
+@media (max-width: 1024px) {
+  .page,
+  .document {
+    padding-top: var(--space-4);
+  }
+
+  .page {
+    gap: var(--space-6);
+  }
+
+  .topics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .tocList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+}
+
+@media (max-width: 640px) {
+  .tocList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacts,
+  .topic {
+    padding: var(--space-2);
+  }
+
+  .links {
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .table th,
+  .table td {
+    height: auto;
+    padding: var(--space-1) 12px;
+  }
+}

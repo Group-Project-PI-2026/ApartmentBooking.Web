@@ -4,7 +4,7 @@
 }
 
 .tab {
-  min-width: 170px;
+  min-width: min(170px, 100%);
   height: var(--control-height);
   padding: 0 var(--space-3);
   background: var(--color-surface);
@@ -25,4 +25,17 @@
 .active {
   background: var(--color-surface-subtle);
   color: var(--color-accent);
+}
+
+.tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+@media (max-width: 640px) {
+  .tab {
+    flex-shrink: 0;
+    min-width: 0;
+    padding: 0 var(--space-2);
+  }
 }

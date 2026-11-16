@@ -39,3 +39,10 @@
 .active .label {
   color: var(--color-text);
 }
+
+@media (max-width: 640px) {
+  .steps {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+}

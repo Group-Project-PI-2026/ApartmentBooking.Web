@@ -57,3 +57,18 @@
   --container-width: 1776px;
   --page-padding: 72px;
 }
+
+@media (max-width: 1280px) {
+  :root {
+    --page-padding: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page-padding: 16px;
+    --font-h1: 600 28px / 36px var(--font-family);
+    --font-h2: 600 22px / 30px var(--font-family);
+    --font-h3: 600 18px / 26px var(--font-family);
+  }
+}

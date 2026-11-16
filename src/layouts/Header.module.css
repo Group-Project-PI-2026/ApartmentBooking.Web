@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  z-index: 30;
   padding-top: var(--space-3);
   background: var(--color-surface);
 }
@@ -24,6 +26,10 @@
   gap: var(--space-4);
 }
 
+.account {
+  display: contents;
+}
+
 .link {
   font: var(--font-body);
   color: var(--color-text);
@@ -37,5 +43,73 @@
 }
 
 .login {
-  min-width: 120px;
+  min-width: min(120px, 100%);
+}
+
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height);
+  height: var(--control-height);
+  padding: 0;
+  background: none;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+
+.menuButton:focus-visible {
+  outline: none;
+  border-color: var(--color-focus);
+  box-shadow: inset 0 0 0 1px var(--color-focus);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .nav,
+  .account {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+  }
+
+  .mobileMenuOpen {
+    position: absolute;
+    right: var(--page-padding);
+    left: var(--page-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-top: none;
+    box-shadow: 0 8px 24px rgb(23 42 45 / 12%);
+  }
+
+  .mobileMenuOpen .login {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding-top: var(--space-2);
+  }
+
+  .bar {
+    height: 64px;
+    padding: 8px 12px;
+  }
+
+  .logo img {
+    width: 122px;
+    height: auto;
+  }
 }

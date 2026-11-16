@@ -29,11 +29,11 @@
 }
 
 .navButton {
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .period {
-  min-width: 210px;
+  min-width: min(210px, 100%);
   text-align: center;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .filter {
-  width: 320px;
+  width: min(320px, 100%);
 }
 
 .panel,
@@ -265,7 +265,7 @@
 }
 
 .resetButton {
-  width: 280px;
+  width: min(280px, 100%);
 }
 
 .emptyCell {
@@ -320,15 +320,106 @@
 }
 
 .noteButton {
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .cardAction {
   align-self: flex-start;
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .successModal {
   background: var(--color-success-surface);
   border-color: var(--color-success);
+}
+
+.wideTable table {
+  min-width: 1100px;
+}
+
+.historyTable table {
+  min-width: 600px;
+}
+
+.grid {
+  min-width: 1100px;
+}
+
+@media (max-width: 1280px) {
+  .filtersGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .filtersGrid > span[aria-hidden] {
+    display: none;
+  }
+
+  .detailsColumns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .periodNav,
+  .filtersRow,
+  .actionsRow {
+    flex-wrap: wrap;
+  }
+
+  .period {
+    flex-basis: 100%;
+    order: -1;
+    text-align: left;
+  }
+
+  .syncGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+  }
+
+  .filtersGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resetButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .titleRow {
+    flex-wrap: wrap;
+  }
+
+  .panel,
+  .card {
+    padding: var(--space-2);
+  }
+
+  .navButton,
+  .filter,
+  .cardAction,
+  .noteButton {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .filtersGrid,
+  .twoCols,
+  .modalActions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .infoRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .inlineActions {
+    flex-wrap: wrap;
+  }
+
+  .photo {
+    height: 200px;
+  }
 }

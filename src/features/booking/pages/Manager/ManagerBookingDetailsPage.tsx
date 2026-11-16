@@ -247,7 +247,7 @@ export function ManagerBookingDetailsPage() {
 
       <section className={styles.card}>
         <h2>Історія дій</h2>
-        <Table>
+        <Table className={styles.historyTable}>
           <TableHeader columns={historyColumns} />
           <TableBody>
             {b.history.map((h, i) => (

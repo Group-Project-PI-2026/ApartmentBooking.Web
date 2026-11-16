@@ -63,15 +63,35 @@
 }
 
 .action {
-  min-width: 300px;
+  min-width: min(300px, 100%);
 }
 
 .message {
-  width: 300px;
+  width: min(300px, 100%);
   text-align: left;
 }
 
 .hint {
   font: var(--font-caption);
   color: var(--color-text-muted);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-2);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action,
+  .message {
+    width: 100%;
+  }
 }

@@ -25,10 +25,24 @@
 
 .action {
   align-self: flex-start;
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .actions {
   display: flex;
   gap: var(--space-2);
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-3);
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .action {
+    width: 100%;
+  }
 }

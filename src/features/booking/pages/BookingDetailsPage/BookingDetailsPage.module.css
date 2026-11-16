@@ -99,3 +99,35 @@ h3.muted {
 .instructions {
   white-space: pre-line;
 }
+
+@media (max-width: 1280px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding-top: var(--space-4);
+  }
+
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .meta {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .card {
+    padding: var(--space-2);
+  }
+
+  .photo {
+    height: 200px;
+  }
+}
