@@ -7,6 +7,7 @@ import podilskyi from '../../assets/districts/podilskyi.jpg'
 import shevchenkivskyi from '../../assets/districts/shevchenkivskyi.jpg'
 import { ApartmentCard } from '../../components/ApartmentCard/ApartmentCard'
 import { SearchForm } from '../../components/SearchForm/SearchForm'
+import { DEPOSIT_PERCENT } from '../../bookingPolicy'
 import { searchUrl } from '../../searchQuery'
 import styles from './HomePage.module.css'
 
@@ -19,7 +20,7 @@ const featuredDistricts = [
 const steps = [
   { title: 'Оберіть апартаменти', text: 'Вкажіть дати та перегляньте доступні варіанти.' },
   { title: 'Підтвердіть особу', text: 'Увійдіть і пройдіть перевірку особи.' },
-  { title: 'Сплатіть', text: 'Оберіть передоплату 50% або повну оплату.' },
+  { title: 'Сплатіть', text: `Оберіть передоплату ${DEPOSIT_PERCENT}% або повну оплату.` },
 ]
 
 const faq = [

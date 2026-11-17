@@ -4,6 +4,7 @@ import { formatGuests, formatPrice } from '@/shared/lib/format'
 import {
   Button,
   ButtonLink,
+  InfoMessage,
   Input,
   Loader,
   Select,
@@ -104,6 +105,11 @@ export function ManagerApartmentsPage() {
           Додати апартаменти
         </ButtonLink>
       </header>
+
+      <InfoMessage tone="warning" title="Демонстраційні дані">
+        Керування апартаментами ще не підключене до бекенду: список не збігається з публічним
+        каталогом, а зміни зберігаються лише до перезавантаження сторінки.
+      </InfoMessage>
 
       {archived && (
         <Notice tone="success">

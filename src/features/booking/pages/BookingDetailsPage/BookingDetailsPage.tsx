@@ -7,15 +7,10 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 import { Button, ButtonLink, Container, InfoMessage, Loader, Status } from '@/shared/ui'
 import { useApartment } from '../../api/apartments'
 import { bookingNumber, bookingStatus, useBooking, usePayBalance } from '../../api/bookings'
+import { cancellationTerms } from '../../bookingPolicy'
 import { bookingStatusView, bookingTitle } from '../../bookingStatus'
 import { bookingPaths } from '../../paths'
 import styles from './BookingDetailsPage.module.css'
-
-const cancellationTerms = [
-  'Понад 7 діб — повне повернення сплаченої суми.',
-  'Понад 24 години й до 7 діб включно — утримання 10% загальної вартості.',
-  'За 24 години або менше — без повернення коштів.',
-]
 
 export function BookingDetailsPage() {
   const { id = '' } = useParams()

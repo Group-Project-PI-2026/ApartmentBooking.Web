@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { Container } from '@/shared/ui'
+import { cancellationRules, DEPOSIT_PERCENT } from '../../bookingPolicy'
 import { bookingPaths } from '../../paths'
 import styles from './InfoPages.module.css'
 
@@ -17,12 +18,12 @@ const sections = [
   {
     id: 'payment',
     title: 'Оплата',
-    text: 'Можна внести передоплату 50% або сплатити повну вартість проживання. Оплата відбувається на сторінці зовнішнього платіжного сервісу.',
+    text: `Можна внести передоплату ${DEPOSIT_PERCENT}% або сплатити повну вартість проживання. Оплата відбувається на сторінці зовнішнього платіжного сервісу.`,
   },
   {
     id: 'balance',
     title: 'Доплата',
-    text: 'Якщо внесено 50% передоплати, залишок сплачується в день заселення.',
+    text: `Якщо внесено ${DEPOSIT_PERCENT}% передоплати, залишок сплачується в день заселення.`,
   },
   {
     id: 'confirmation',
@@ -45,15 +46,6 @@ const sections = [
     title: 'Допомога',
     text: 'Для запитань зверніться через розділ «Контакти та допомога».',
   },
-]
-
-const cancellationRules = [
-  { time: 'Понад 7 діб', refund: 'Повне повернення сплаченої суми' },
-  {
-    time: 'Понад 24 години й до 7 діб включно',
-    refund: 'Утримання 10% загальної вартості бронювання',
-  },
-  { time: '24 години або менше', refund: 'Без повернення коштів' },
 ]
 
 export function TermsPage() {

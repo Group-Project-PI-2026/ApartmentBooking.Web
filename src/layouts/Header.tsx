@@ -11,7 +11,7 @@ import { headerNav } from './navigation'
 import styles from './Header.module.css'
 
 export function Header() {
-  const { isAuthenticated, login } = useCurrentUser()
+  const { isAuthenticated, login, logout } = useCurrentUser()
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -33,6 +33,16 @@ export function Header() {
       <NavLink to={bookingPaths.profile} className={styles.link} onClick={close}>
         Профіль
       </NavLink>
+      <Button
+        variant="secondary"
+        size="compact"
+        onClick={() => {
+          close()
+          void logout()
+        }}
+      >
+        Вийти
+      </Button>
     </>
   ) : (
     <Button

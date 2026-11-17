@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { Container, FaqRow } from '@/shared/ui'
+import { DEPOSIT_PERCENT } from '../../bookingPolicy'
 import { bookingPaths } from '../../paths'
 import styles from './InfoPages.module.css'
 
@@ -25,8 +26,7 @@ const topics = [
 const faq = [
   {
     question: 'Чи можна сплатити частину суми?',
-    answer:
-      'Так, можна внести 50% або оплатити всю суму одразу. Залишок сплачується в день заселення.',
+    answer: `Так, можна внести ${DEPOSIT_PERCENT}% або оплатити всю суму одразу. Залишок сплачується в день заселення.`,
   },
   {
     question: 'Скільки чекати підтвердження платежу?',

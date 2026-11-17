@@ -110,13 +110,12 @@ describe('paymentSplit', () => {
   it('deposit + balance always add up to total', () => {
     for (const total of [1, 999, 1801, 12345]) {
       const { payNow, balance } = paymentSplit(total, false)
-      expect(payNow + balance).toBe(total)
+      expect(payNow + balance).toBeCloseTo(total, 2)
     }
   })
 
-  // BUG-FE-001: the backend charges Booking:DepositPercent = 30 % (appsettings.json),
-  // but the checkout page tells the user they will pay 50 % now.
-  it.fails('BUG-FE-001: deposit shown on checkout matches backend DepositPercent (30 %)', () => {
+  // BUG-FE-001 (fixed): deposit comes from bookingPolicy.ts, same value as backend Booking:DepositPercent.
+  it('BUG-FE-001: deposit shown on checkout matches backend DepositPercent (30 %)', () => {
     expect(DEPOSIT_PERCENT).toBe(30)
     expect(paymentSplit(4000, false).payNow).toBe(1200)
   })

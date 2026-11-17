@@ -46,6 +46,7 @@ export function OwnerApplyPage() {
     propertyType: propertyTypes[0].value,
     rooms: roomOptions[0].value,
     maxGuests: guestOptions[1].value,
+    expectedPrice: '',
     amenities: [],
     description: '',
     comment: '',
@@ -165,6 +166,12 @@ export function OwnerApplyPage() {
             <Select label="Тип помешкання *" options={propertyTypes} {...text('propertyType')} />
             <Select label="Кількість кімнат *" options={roomOptions} {...text('rooms')} />
             <Select label="Максимум гостей *" options={guestOptions} {...text('maxGuests')} />
+            <Input
+              label="Очікувана ціна за ніч, ₴ *"
+              placeholder="Наприклад, 1800"
+              inputMode="numeric"
+              {...text('expectedPrice')}
+            />
           </div>
 
           <fieldset className={styles.amenities}>
