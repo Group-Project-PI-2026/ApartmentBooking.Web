@@ -22,6 +22,7 @@ const validApply: ApplyForm = {
   propertyType: 'Квартира',
   rooms: '2',
   maxGuests: '4',
+  expectedPrice: '1800',
   amenities: ['Wi-Fi'],
   description: 'Світла квартира',
   comment: '',
@@ -63,16 +64,20 @@ describe('owner application form: validate', () => {
     },
   )
 
-  it.each(['12345', '+38067'])('rejects too short phone "%s"', (phone) => {
-    expect(validate({ ...validApply, phone }).phone).toBeDefined()
-  })
+  it.each(['12345', '+38067', '+1 202 555 0147 99', '067123456789'])(
+    'rejects invalid phone "%s"',
+    (phone) => {
+      expect(validate({ ...validApply, phone }).phone).toBeDefined()
+    },
+  )
 
   it.each(['0671234567', '+380 (67) 123-45-67'])('accepts phone "%s"', (phone) => {
     expect(validate({ ...validApply, phone }).phone).toBeUndefined()
   })
 
   // BUG-FE-003: phonePattern = /^\+?[\d\s()-]{10,}$/ does not require digits.
-  it.fails('BUG-FE-003: phone without any digits is rejected', () => {
+  // BUG-FE-003 (fixed): phone must contain 10 digits or 12 digits starting with 380
+  it('BUG-FE-003: phone without any digits is rejected', () => {
     expect(validate({ ...validApply, phone: '(((((-----)))))' }).phone).toBeDefined()
   })
 })
@@ -95,9 +100,14 @@ describe('owner application form: toRequest', () => {
 
   // BUG-FE-002: the form has no price field and toRequest never sends expectedPricePerNight,
   // so every request reaches the backend with price 0 (see BUG-BE-001).
-  it.fails('BUG-FE-002: request contains a positive expectedPricePerNight', () => {
+  // BUG-FE-002 (fixed): the form has a price field and sends it
+  it('BUG-FE-002: request contains a positive expectedPricePerNight', () => {
     const request = toRequest(validApply) as { expectedPricePerNight?: number }
-    expect(request.expectedPricePerNight).toBeGreaterThan(0)
+    expect(request.expectedPricePerNight).toBe(1800)
+  })
+
+  it.each(['', '0', '-100', 'abc', '1000001'])('rejects expected price "%s"', (expectedPrice) => {
+    expect(validate({ ...validApply, expectedPrice }).expectedPrice).toBeDefined()
   })
 })
 

@@ -106,9 +106,7 @@ test.describe('Гість: пошук і перегляд апартаменті
   test('FE-E2E-14 BUG-FE-004: умови оплати і скасування відповідають політиці бекенду', async ({
     page,
   }) => {
-    // Known bug: the page promises 50 % prepayment and a 10 % / 24 h penalty, while the backend
-    // (appsettings Booking section) charges 30 % and keeps 50 % of the price when cancelled < 7 days before check-in.
-    test.fail()
+    // BUG-FE-004 (fixed): terms are rendered from bookingPolicy.ts, the same values as the backend Booking section.
     await page.goto(`/apartments/${apartments[0].id}`)
     const terms = page.locator('section', {
       has: page.getByRole('heading', { name: 'Умови оплати та скасування' }),

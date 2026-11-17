@@ -5,6 +5,7 @@ import { formatGuests, formatPrice } from '@/shared/lib/format'
 import { Button, Checkbox, InfoMessage, Input, RadioCard, Select, Status } from '@/shared/ui'
 import { useReserveBooking } from '../../api/bookings'
 import { savePendingPayment } from '../../pendingPayment'
+import { cancellationTerms } from '../../bookingPolicy'
 import { DEPOSIT_PERCENT, paymentSplit } from '../../pricing'
 import styles from './CheckoutPage.module.css'
 
@@ -31,12 +32,6 @@ interface GuestForm {
 
 const REQUIRED = 'Поле обов’язкове'
 const PHONE_PATTERN = /^\+380\d{9}$/
-
-const cancellationTerms = [
-  'Понад 7 діб до заїзду — повне повернення сплаченої суми.',
-  'Понад 24 години й до 7 діб включно — утримання 10% загальної вартості бронювання.',
-  'За 24 години або менше до заїзду — без повернення коштів.',
-]
 
 function validate(form: GuestForm) {
   const errors: Partial<Record<keyof GuestForm, string>> = {}

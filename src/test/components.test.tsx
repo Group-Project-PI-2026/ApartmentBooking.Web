@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { ApartmentCardDto } from '@/features/booking/api/apartments'
 import { ApartmentCard } from '@/features/booking/components/ApartmentCard/ApartmentCard'
 import { SearchForm } from '@/features/booking/components/SearchForm/SearchForm'
+import { Header } from '@/layouts/Header'
 import { RequireAuth } from '@/shared/auth/RequireAuth'
 import { Button } from '@/shared/ui/Button/Button'
 import { Pagination } from '@/shared/ui/Pagination/Pagination'
@@ -23,6 +24,7 @@ const auth = {
   isAuthenticated: true,
   roles: ['tenant'] as string[],
   login: vi.fn(),
+  logout: vi.fn(),
 }
 vi.mock('@/shared/auth/useCurrentUser', () => ({
   useCurrentUser: () => ({
@@ -36,6 +38,37 @@ function LocationProbe() {
   const location = useLocation()
   return <output data-testid="location">{location.pathname + location.search}</output>
 }
+
+describe('<Header> (BUG-FE-006 fixed)', () => {
+  beforeEach(() => {
+    auth.isAuthenticated = true
+    auth.logout.mockClear()
+  })
+
+  it('signed-in user has a "Вийти" button that calls logout', async () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    )
+    const buttons = screen.getAllByRole('button', { name: 'Вийти', hidden: true })
+    await userEvent.click(buttons[0])
+    expect(auth.logout).toHaveBeenCalledTimes(1)
+  })
+
+  it('anonymous user sees "Увійти" and no "Вийти"', () => {
+    auth.isAuthenticated = false
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>,
+    )
+    expect(screen.queryAllByRole('button', { name: 'Вийти', hidden: true })).toHaveLength(0)
+    expect(screen.getAllByRole('button', { name: 'Увійти', hidden: true }).length).toBeGreaterThan(
+      0,
+    )
+  })
+})
 
 describe('<Button>', () => {
   it('is type="button" by default (does not submit forms accidentally)', () => {

@@ -5,6 +5,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 import { ApiError } from '@/shared/api'
 import { useApartment } from '../../api/apartments'
 import { amenityIcon, locationIcon } from '../../amenityIcons'
+import { cancellationTerms, paymentTerm } from '../../bookingPolicy'
 import { readSearch, searchUrl } from '../../searchQuery'
 import { BookingCard } from './BookingCard'
 import { Gallery } from './Gallery'
@@ -17,10 +18,8 @@ const rules = [
 ]
 
 const terms = [
-  'Оплата: передоплата 50% або повна оплата через зовнішній платіжний сервіс.',
-  'Понад 7 діб до заїзду: повне повернення сплаченої суми.',
-  'Понад 24 години й до 7 діб включно: утримання 10% вартості бронювання.',
-  'За 24 години або менше до заїзду: кошти не повертаються.',
+  `Оплата: ${paymentTerm.charAt(0).toLowerCase()}${paymentTerm.slice(1)}`,
+  ...cancellationTerms,
 ]
 
 export function ApartmentPage() {
