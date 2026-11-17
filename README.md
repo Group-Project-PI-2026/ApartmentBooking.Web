@@ -69,3 +69,16 @@ docker run -p 80:80 \
 | `API_BASE_URL`   | empty                   | API URL if it is not served from the same origin |
 
 Health check: `GET /healthz`. The Keycloak client must allow the site URL in Valid redirect URIs and Web origins.
+
+## Testing
+
+| Command            | Description                                                                  |
+| ------------------ | ---------------------------------------------------------------------------- |
+| `npm test`         | Unit and component tests (Vitest + Testing Library, jsdom)                   |
+| `npm run test:e2e` | Browser E2E tests (Playwright, local Google Chrome; API and Keycloak mocked) |
+| `npm run test:all` | Both suites                                                                  |
+
+- Unit tests live next to the code (`*.test.ts(x)`), component tests in `src/test/`.
+- E2E specs are in `e2e/`; `e2e/fixtures.ts` mocks `/api/**` and the Keycloak endpoints, so no backend is needed.
+- Tests named `BUG-FE-xxx` use `it.fails` / `test.fail()`: they document open defects and turn red once the bug is fixed (then remove the marker).
+- Reports: `test-results/vitest-junit.xml`, `test-results/playwright-report/`.
